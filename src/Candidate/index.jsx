@@ -1,10 +1,10 @@
 import React from 'react';
 import './style.css';
 
-const Candidate = (props) => (
+const Candidate = ({ name, avatar }) => (
   <div className="candidate">
-    <h3 className="candidate__name">{props.name}</h3>
-    <img className="candidate__avatar" src={props.avatar} />
+    <h3 className="candidate__name">{name}</h3>
+    <img className="candidate__avatar" src={avatar} />
     <button className="btn-vote">Vybrat</button>
   </div>
 );
