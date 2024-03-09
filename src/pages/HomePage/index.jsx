@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import { Candidate } from '../../components/Candidate';
+import { Castle } from '../../components/Castle';
+import { CandidateList } from '../../components/CandidateList';
 import './style.css';
 
 export const HomePage = () => {
@@ -7,36 +8,26 @@ export const HomePage = () => {
   const [president, setPresident] = useState(null);
 
   useEffect(() => setCandidates([
-    { name: "Ferdinand Mravenec", avatar: '/avatars/candidate01.png' },
-    { name: "Markéta Smetana", avatar: '/avatars/candidate02.png' },
+    { name: "Ferda Mravenec", avatar: '/avatars/candidate01.png' },
+    { name: "Marta Smetana", avatar: '/avatars/candidate02.png' },
     { name: "Beáta Skočdopolová", avatar: '/avatars/candidate03.png' },
-    { name: "Lubomír Poňuchálek", avatar: '/avatars/candidate04.png' },
+    { name: "Lumír Poňuchálek", avatar: '/avatars/candidate04.png' },
   ]), []);
   
+
+  const handleVote = (name) => {
+ //   console.log("handle on vote in Homepage");
+  //  if (confirm(`Are you sure?`)) {
+      setPresident(name);
+//    }
+    
+  }
+
   return (
     <div className="container">
-      <div className="castle">
-        <div className="castle__image"></div>
-        <div className="castle__body">
-          <h1>Nový prezident</h1>
-          <p className="castle__president">
-            {
-              president === null ? 'Vyberte svého kandidáta' : president
-            }
-          </p>
-        </div>
-      </div>
+      <Castle president={president} />      
+      <CandidateList candidates={candidates} handleOnVote={handleVote} />
       
-      <h2>Kandidátí</h2>
-      <div className="candidate-list">
-        {candidates.map((c) => (
-          <Candidate 
-            key={c.name}
-            name={c.name} 
-            avatar={c.avatar} 
-          />
-        ))}
-      </div>
     </div>
   );
 };
